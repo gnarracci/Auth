@@ -10,6 +10,7 @@ app.set('pkg', pkg);
 
 // Middlewares
 app.use(morgan('dev'));
+app.use(express.json())
 
 // Info
 app.get('/', (req, res) => {
