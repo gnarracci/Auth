@@ -23,13 +23,12 @@ const userSchema = new Schema({
     versionKey: false
 });
 
-userSchema.statics.encryptPassword = async (password) => {
-    const salt = await bcrypt.getSalt(10)
-    return await bcrypt.hash(password, salt)
-};
+userSchema.statics.encryptPassword = (password) => {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+}
 
-userSchema.statics.comparePassword = async (password, receivedPassword) => {
-    return await bcrypt.compare(password, receivedPassword)
-};
+userSchema.statics.comparePassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+}
 
 export default model('User', userSchema);

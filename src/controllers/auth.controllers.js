@@ -8,7 +8,8 @@ export const signup = async (req, res) => {
         email,
         password: await User.encryptPassword(password)
     })
-    console.log(newUser)
+    
+    await newUser.save();
 
 
     res.json('signup');
