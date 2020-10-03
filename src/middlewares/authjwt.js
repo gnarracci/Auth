@@ -4,19 +4,26 @@ import User from '../models/User';
 
 export const verifyToken = async (req, res, next) => {
 
-    // Token taken
-    const token = req.headers["x-access-token"];
+    try {
+        // Token taken
+        const token = req.headers["x-access-token"];
 
-    console.log(token);
+        // Token Sent Verification
+        if(!token) return res.status(403).json({message: "No token provided!"});
 
-    // Token Sent Verification
-    if(!token) return res.status(403).json({message: "Not token provided!"});
+        // Token Info Verification
+        const decoded = jwt.verify(token, config.SECRET);
 
-    //Token Info Verification
-    const decoded = jwt.verify(token, config.SECRET);
+        // User Data
+        const user = await User.findById(decoded.id, {password: 0});
+    
+        if (!user) return res.status(404).json({message: "No User Found!"});
 
-    console.log(decoded);
+        next();
+    } catch (error) {
 
-    next();
+        return res.status(500).json({message: "Unauthorized!"});
+        
+    }
 
 }
