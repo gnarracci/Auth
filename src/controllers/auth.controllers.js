@@ -35,5 +35,20 @@ export const signup = async (req, res) => {
 }
 
 export const signin = async (req, res) => {
-    res.json('signin');
+    
+    // Find User
+    const userFound = await User.findOne({email: req.body.email}).populate("roles");
+    
+    if (!userFound) return res.status(400).json({message: "User not Found!"});
+
+    // Compare Password
+    const comparePassword = await User.matchPassword(req.body.password, userFound.password);
+
+    if (!comparePassword) return res.status(401).json({token: null, message: "Invalid Password!"})
+
+    console.log(userFound);
+
+    console.log(comparePassword);
+
+    res.json({token: ''})
 }

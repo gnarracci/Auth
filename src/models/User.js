@@ -27,8 +27,9 @@ userSchema.statics.encryptPassword = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
 
-userSchema.statics.comparePassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+userSchema.statics.matchPassword = async (password, savedPassword) => {
+    const match = await bcrypt.compare(password, savedPassword);
+    return match;
 }
 
 export default model('User', userSchema);
