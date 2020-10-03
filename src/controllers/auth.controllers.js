@@ -46,9 +46,10 @@ export const signin = async (req, res) => {
 
     if (!comparePassword) return res.status(401).json({token: null, message: "Invalid Password!"})
 
-    console.log(userFound);
+    // Token Emitting
+    const token = jwt.sign({id: userFound._id}, config.SECRET, {
+        expiresIn: 43200 // 12 Hours expire Token
+    });
 
-    console.log(comparePassword);
-
-    res.json({token: ''})
+    res.json({token});
 }
