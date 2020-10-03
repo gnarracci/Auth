@@ -6,12 +6,86 @@
 	},
 	"item": [
 		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/api/auth/signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"fredyz\",\n    \"email\": \"fredyz.ariza.13@gmail.com\",\n    \"password\": \"password\",\n    \"roles\": [\n        \"admin\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/signin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"fredyz.ariza.13@gmail.com\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "/products",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "localhost:3000/api/products",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"products"
+					]
 				}
 			},
 			"response": []
@@ -22,7 +96,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "localhost:3000/api/products/5f72c13717bcda3a74c1076f",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"products",
+						"5f72c13717bcda3a74c1076f"
+					]
 				}
 			},
 			"response": []
@@ -33,14 +116,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/products/5f72f01b0a17cc256d943992",
+					"raw": "localhost:3000/api/products/5f73f4054f835f140e5fb78f",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"products",
-						"5f72f01b0a17cc256d943992"
+						"5f73f4054f835f140e5fb78f"
 					]
 				}
 			},
@@ -50,16 +134,27 @@
 			"name": "/products/productId",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Laptop Razr\"\n}"
+				},
 				"url": {
-					"raw": "localhost:3000/products/5f72e8589c65311c877e2575",
+					"raw": "localhost:3000/api/products/5f751f660655a50eefe4db06",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"products",
-						"5f72e8589c65311c877e2575"
+						"5f751f660655a50eefe4db06"
 					]
 				}
 			},
@@ -78,15 +173,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Laptop Toshiba\",\n    \"category\":\"Laptops\",\n    \"price\":\"899.99\",\n    \"imgURL\":\"https://4.bp.blogspot.com/-NkS6OsI0jms/UHUvaiVOD3I/AAAAAAAABGM/Nv_KCgTcGmc/s1600/Toshiba+Satellite+L850.jpg\"\n}"
+					"raw": "{\n    \"name\":\"Laptop Cabrito\",\n    \"category\":\"Laptops\",\n    \"price\":\"10000.00\",\n    \"imgURL\":\"http://www.tangenghui.com/wp-content/uploads/2013/07/aw14_beauty_lnb_1050rf115_gy.jpg\"\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/products",
+					"raw": "localhost:3000/api/products",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"products"
 					]
 				}
